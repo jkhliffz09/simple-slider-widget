@@ -66,13 +66,7 @@
     </div>
     
     <!-- Carousel Info -->
-    <div class="text-sm text-gray-500 space-y-1">
-      <p>Slide {{ currentSlide + 1 }} of {{ store.slides.length }}</p>
-      <p v-if="store.settings.autoplay">
-        Autoplay: {{ store.settings.autoplayInterval / 1000 }}s interval
-      </p>
-      <p class="text-xs">Use arrow keys to navigate slides</p>
-    </div>
+    <!-- Removed carousel info section in preview mode -->
   </div>
 </template>
 

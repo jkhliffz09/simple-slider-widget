@@ -1,5 +1,8 @@
 export interface Slide {
   image: string
+  backgroundImage?: string
+  backgroundColor?: string
+  backgroundColorOpacity?: number
   headline: string
   description: string
   buttonText: string

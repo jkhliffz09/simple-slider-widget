@@ -6,6 +6,9 @@ export const useCarouselStore = defineStore("carousel", {
     slides: [
       {
         image: "/beautiful-landscape.png",
+        backgroundImage: "",
+        backgroundColor: "#000000",
+        backgroundColorOpacity: 0.5,
         headline: "Welcome to Our Amazing Product",
         description:
           "Discover the features that make our product stand out from the competition. Built with modern technology and user experience in mind.",
@@ -14,6 +17,9 @@ export const useCarouselStore = defineStore("carousel", {
       },
       {
         image: "/modern-office.png",
+        backgroundImage: "",
+        backgroundColor: "#000000",
+        backgroundColorOpacity: 0.5,
         headline: "Built for Professionals",
         description:
           "Our solution is designed specifically for professionals who demand excellence and reliability in their daily workflow.",
@@ -22,6 +28,9 @@ export const useCarouselStore = defineStore("carousel", {
       },
       {
         image: "/team-collaboration.png",
+        backgroundImage: "",
+        backgroundColor: "#000000",
+        backgroundColorOpacity: 0.5,
         headline: "Collaborate with Your Team",
         description: "Work together seamlessly with powerful collaboration tools that keep everyone on the same page.",
         buttonText: "Try Now",
@@ -55,6 +64,9 @@ export const useCarouselStore = defineStore("carousel", {
     addSlide() {
       const newSlide: Slide = {
         image: "/new-slide-image.jpg",
+        backgroundImage: "",
+        backgroundColor: "#000000",
+        backgroundColorOpacity: 0.5,
         headline: "New Slide",
         description: "Add your description here",
         buttonText: "Click Here",

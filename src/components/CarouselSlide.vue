@@ -1,12 +1,32 @@
 <template>
   <div 
     :class="[
-      'min-h-[400px] flex items-center',
+      'min-h-[400px] flex items-center relative',
       layout === 'image-left' ? 'flex-row' : 'flex-row-reverse'
     ]"
+    :style="getSlideBackgroundStyle()"
   >
+    <!-- Background Image (full opacity) -->
+    <div 
+      v-if="slide.backgroundImage"
+      class="absolute inset-0 bg-cover bg-center"
+      :style="{
+        backgroundImage: `url(${slide.backgroundImage})`
+      }"
+    ></div>
+    
+    <!-- Background Color Overlay (with opacity) -->
+    <div 
+      v-if="slide.backgroundImage && slide.backgroundColor"
+      class="absolute inset-0"
+      :style="{
+        backgroundColor: slide.backgroundColor,
+        opacity: slide.backgroundColorOpacity || 0.5
+      }"
+    ></div>
+    
     <!-- Image Section -->
-    <div class="w-1/2 h-full">
+    <div class="w-1/2 h-full relative z-10">
       <img
         :src="slide.image || '/placeholder.svg?height=400&width=600'"
         :alt="slide.headline"
@@ -14,13 +34,16 @@
           'w-full h-full',
           `object-${store.style.imageFit}`
         ]"
-        :style="{ borderRadius: `${store.style.borderRadius}px` }"
+        :style="{ 
+          borderRadius: `${store.style.borderRadius}px`,
+          opacity: 1 // Product image always full opacity
+        }"
       />
     </div>
     
     <!-- Content Section -->
     <div 
-      class="w-1/2 p-8 flex flex-col justify-center"
+      class="w-1/2 p-8 flex flex-col justify-center relative z-10"
       :style="{ 
         fontFamily: store.style.fontFamily,
         textAlign: store.style.textAlign
@@ -77,7 +100,13 @@ interface Props {
 const props = defineProps<Props>()
 const store = useCarouselStore()
 
-const getButtonClasses = () => {
+const getSlideBackgroundStyle = computed(() => {
+  return {
+    backgroundColor: store.style.backgroundColor
+  }
+})
+
+const getButtonClasses = computed(() => {
   const baseClasses = 'hover:opacity-90'
   
   switch (store.style.buttonStyle) {
@@ -88,9 +117,9 @@ const getButtonClasses = () => {
     default: // solid
       return `${baseClasses}`
   }
-}
+})
 
-const getButtonStyles = () => {
+const getButtonStyles = computed(() => {
   const color = store.style.buttonColor
   
   switch (store.style.buttonStyle) {
@@ -109,5 +138,5 @@ const getButtonStyles = () => {
         color: '#ffffff'
       }
   }
-}
+})
 </script>
